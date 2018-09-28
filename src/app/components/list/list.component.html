@@ -1,0 +1,82 @@
+
+<div>
+  <p [hidden]="!loading"> loading...</p>
+
+  <mat-card *ngIf="!loading">
+
+    <button mat-raised-button color="primary" routerLink="/create">Create New Issue</button>
+
+    <br>
+    <br>
+
+    <mat-divider></mat-divider>
+
+    <table mat-table [dataSource]="issues">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="responsible">
+        <th mat-header-cell *matHeaderCellDef>Responsible</th>
+        <td mat-cell *matCellDef="let element"> {{element.responsible}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="severity">
+        <th mat-header-cell *matHeaderCellDef>Severity</th>
+        <td mat-cell *matCellDef="let element"> {{element.severity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</th>
+        <td mat-cell *matCellDef="let element" class="mat-column-right">
+          <button mat-button color="primary" (click)="editIssue(element._id)">Edit</button>
+          <button mat-button color="warn" (click)="deleteIssue(element._id)">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <!--   <table mat-table [dataSource]="issues" matSort class="mat-elevation-z8">
+
+         &lt;!&ndash; Position Column &ndash;&gt;
+         <ng-container matColumnDef="position">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+           <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+         </ng-container>
+
+         &lt;!&ndash; Name Column &ndash;&gt;
+         <ng-container matColumnDef="name">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+           <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+         </ng-container>
+
+         &lt;!&ndash; Weight Column &ndash;&gt;
+         <ng-container matColumnDef="weight">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+           <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+         </ng-container>
+
+         &lt;!&ndash; Symbol Column &ndash;&gt;
+         &lt;!&ndash;<ng-container matColumnDef="symbol">&ndash;&gt;
+           &lt;!&ndash;<th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>&ndash;&gt;
+           &lt;!&ndash;<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>&ndash;&gt;
+         &lt;!&ndash;</ng-container>&ndash;&gt;
+
+         <tr mat-header-row *matHeaderRowDef="issuesColumns"></tr>
+         <tr mat-row *matRowDef="let row; columns: issuesColumns;"></tr>
+       </table>-->
+  </mat-card>
+
+</div>
+
+
+
